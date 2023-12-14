@@ -88,11 +88,7 @@
 		</cl-row>
 
 		<!-- 新增、编辑 -->
-		<cl-upsert ref="Upsert">
-			<template #slot-userIds="{ scope }">
-				<select-user v-model="scope.userIds" />
-			</template>
-		</cl-upsert>
+		<cl-upsert ref="Upsert" />
 
 		<!-- 高级搜索 -->
 		<cl-adv-search ref="AdvSearch" />
@@ -102,7 +98,7 @@
 <script lang="tsx" name="demo-crud" setup>
 import { useCrud, useUpsert, useTable, useAdvSearch, setFocus, useSearch } from "@cool-vue/crud";
 import { useDict } from "/$/dict";
-import { onMounted, reactive } from "vue";
+import { reactive } from "vue";
 import { ElMessage, ElMessageBox } from "element-plus";
 import { useCool } from "/@/cool";
 import FormBtn from "../components/form-btn.vue";
@@ -261,8 +257,9 @@ const Upsert = useUpsert({
 			props: {
 				labelWidth: "0px"
 			},
+			required: true,
 			component: {
-				name: "slot-userIds"
+				vm: SelectUser
 			}
 		},
 
